@@ -6,8 +6,12 @@ namespace MVC_pd221.Controllers
 {
     public class HomeController : Controller
     {
+        private List<Contact> contacts = new();
         public HomeController()
         {
+            contacts.Add(new Contact() { Id = 1000, Name = "Bob", Phone = "+380987654321" });
+            contacts.Add(new Contact() { Id = 1003, Name = "Olga", Phone = "45-66-33" });
+            contacts.Add(new Contact() { Id = 1006, Name = "Alex", Phone = "0674455332" });
         }
 
         public IActionResult Index()
@@ -22,7 +26,7 @@ namespace MVC_pd221.Controllers
 
         public IActionResult Contacts()
         {
-            return View(); // ~/Views/Home/Contacts.cshtml
+            return View(contacts); // ~/Views/Home/Contacts.cshtml
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
