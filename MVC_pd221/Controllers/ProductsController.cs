@@ -18,5 +18,12 @@ namespace MVC_pd221.Controllers
 
             return View(products);
         }
+
+        public IActionResult Delete(int id)
+        {
+            // delete by id
+
+            return RedirectToAction("Index");
+        }
     }
 }

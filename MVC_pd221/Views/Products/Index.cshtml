@@ -12,6 +12,7 @@
             <th scope="col">Category</th>
             <th scope="col">Discount</th>
             <th scope="col">Status</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -37,6 +38,9 @@
                     {
                         <span class="badge bg-secondary">Out of Stock</span>
                     }
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@i.Id">Delete</a>
                 </td>
             </tr>
         }
