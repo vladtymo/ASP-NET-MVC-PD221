@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using MVC_pd221.Data;
+
 namespace MVC_pd221
 {
     public class Program
@@ -6,8 +9,14 @@ namespace MVC_pd221
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var connStr = builder.Configuration.GetConnectionString("LocalDb");
+
             // Add services to the container.
+            // DI - Dependency Injection. It implements SOLI[D] principle Dependency Inversion
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<ShopDbContext>(opts => 
+                opts.UseSqlServer(connStr));
 
             var app = builder.Build();
 

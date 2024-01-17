@@ -7,9 +7,9 @@ namespace MVC_pd221.Controllers
     {
         private readonly ShopDbContext context;
 
-        public ProductsController()
+        public ProductsController(ShopDbContext context)
         {
-            this.context = new ShopDbContext();
+            this.context = context;
         }
 
         public IActionResult Index()
