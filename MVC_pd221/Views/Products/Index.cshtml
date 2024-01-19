@@ -3,6 +3,9 @@
 <h1>Products List</h1>
 <p>You can manage the available products here.</p>
 
+<div>
+    <a asp-action="Create" class="btn btn-primary">Create New Product</a>
+</div>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -18,7 +21,7 @@
     <tbody>
         @foreach (var i in Model)
         {
-            <tr>
+            <tr class="align-middle">
                 <th scope="row">@i.Id</th>
                 <td>@i.Name 
                     @if (i.Discount > 0)
@@ -40,9 +43,17 @@
                     }
                 </td>
                 <td>
-                    <a asp-action="Delete" asp-route-id="@i.Id">Delete</a>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-secondary" asp-action="Info" asp-route-id="@i.Id">
+                            <i class="bi bi-info-lg"></i>
+                        </a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@i.Id">
+                            <i class="bi bi-trash-fill"></i>
+                        </a>
+                    </div>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<p>Items: @Model.Count</p>
