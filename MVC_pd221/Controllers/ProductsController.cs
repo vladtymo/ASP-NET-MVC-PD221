@@ -28,6 +28,10 @@ namespace MVC_pd221.Controllers
         [HttpPost]
         public IActionResult Create(Product model)
         {
+            // model validation
+            if (!ModelState.IsValid)
+                return View(model);
+
             // create product in the db
             context.Products.Add(model);
             context.SaveChanges();

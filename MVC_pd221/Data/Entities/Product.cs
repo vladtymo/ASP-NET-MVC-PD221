@@ -1,4 +1,6 @@
-﻿namespace MVC_pd221.Data.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MVC_pd221.Data.Entities
 {
     public class Product
     {

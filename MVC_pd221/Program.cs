@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using MVC_pd221.Data;
+using FluentValidation;
+using System.Reflection;
+using FluentValidation.AspNetCore;
 
 namespace MVC_pd221
 {
@@ -17,6 +20,10 @@ namespace MVC_pd221
 
             builder.Services.AddDbContext<ShopDbContext>(opts => 
                 opts.UseSqlServer(connStr));
+
+            builder.Services.AddFluentValidationAutoValidation();
+            // Load an assembly reference rather than using a marker type.
+            builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
 
             var app = builder.Build();
 
