@@ -22,6 +22,8 @@ namespace MVC_pd221
                 opts.UseSqlServer(connStr));
 
             builder.Services.AddFluentValidationAutoValidation();
+            // enable client-side validation
+            builder.Services.AddFluentValidationClientsideAdapters();
             // Load an assembly reference rather than using a marker type.
             builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
 
