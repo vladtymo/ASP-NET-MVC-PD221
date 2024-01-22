@@ -39,6 +39,28 @@ namespace MVC_pd221.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Edit(int id)
+        {
+            var product = context.Products.Find(id);
+            if (product == null) return NotFound();
+
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Product model)
+        {
+            // model validation
+            if (!ModelState.IsValid)
+                return View(model);
+
+            // update product in the db
+            context.Products.Update(model);
+            context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Delete(int id)
         {
             // delete by id
