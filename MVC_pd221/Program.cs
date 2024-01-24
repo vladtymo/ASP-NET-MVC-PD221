@@ -21,6 +21,9 @@ namespace MVC_pd221
             builder.Services.AddDbContext<ShopDbContext>(opts => 
                 opts.UseSqlServer(connStr));
 
+            // auto mapper
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             builder.Services.AddFluentValidationAutoValidation();
             // enable client-side validation
             builder.Services.AddFluentValidationClientsideAdapters();

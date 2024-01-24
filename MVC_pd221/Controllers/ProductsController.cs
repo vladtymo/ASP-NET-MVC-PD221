@@ -1,18 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MVC_pd221.Data;
 using MVC_pd221.Data.Entities;
+using MVC_pd221.Models;
 
 namespace MVC_pd221.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly ShopDbContext context;
+        private readonly IMapper mapper;
 
-        public ProductsController(ShopDbContext context)
+        public ProductsController(ShopDbContext context, IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
 
         private void LoadCategories()
@@ -36,7 +40,7 @@ namespace MVC_pd221.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Product model)
+        public IActionResult Create(CreateProductModel model)
         {
             // model validation
             if (!ModelState.IsValid)
@@ -45,8 +49,23 @@ namespace MVC_pd221.Controllers
                 return View(model);
             }
 
+            // convert model to entity type
+            // 1 - manually
+            //var entity = new Product()
+            //{
+            //    Name = model.Name,
+            //    Description = model.Description,
+            //    CategoryId = model.CategoryId,
+            //    Discount = model.Discount,
+            //    ImageUrl = model.ImageUrl,
+            //    InStock = model.InStock,
+            //    Price = model.Price
+            //};
+            // 2 - using AutoMapper
+            var entity = mapper.Map<Product>(model);
+
             // create product in the db
-            context.Products.Add(model);
+            context.Products.Add(entity);
             context.SaveChanges();
 
             return RedirectToAction("Index");

@@ -1,4 +1,4 @@
-﻿@model Product;
+﻿@model CreateProductModel;
 <h1>Create New Product</h1>
 
 <form class="row g-3" method="post" asp-action="Create">
@@ -13,7 +13,7 @@
         <span asp-validation-for=Price class="form-text text-danger"></span>
     </div>
     <div class="col-md-8">
-        <label asp-for="CategoryId" class="form-label">State</label>
+        <label asp-for="CategoryId" class="form-label">Category</label>
         <select asp-items="ViewBag.Categories" asp-for=CategoryId class="form-select">
             <option selected disabled>Choose...</option>
         </select>
