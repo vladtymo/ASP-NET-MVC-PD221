@@ -33,7 +33,7 @@ namespace MVC_pd221.Controllers
             return View(products);
         }
 
-        public IActionResult Details(int id)
+        public IActionResult Details(int id, string? returnUrl)
         {
             // with JOIN operators
             //var product = context.Products.Include(x => x.Category).FirstOrDefault(i => i.Id == id);
@@ -44,6 +44,8 @@ namespace MVC_pd221.Controllers
 
             // load product related entity
             context.Entry(product).Reference(x => x.Category).Load();
+
+            ViewBag.ReturnUrl = returnUrl;
 
             return View(product);
         }

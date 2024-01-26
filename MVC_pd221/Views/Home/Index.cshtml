@@ -14,7 +14,7 @@
                     <img src="@i.ImageUrl" class="card-img-top" alt="Image Url">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a class="title-link" asp-controller="Products" asp-action="Details" asp-route-id="@i.Id">@i.Name</a>
+                            <a class="title-link" asp-controller="Products" asp-action="Details" asp-route-id="@i.Id" asp-route-returnUrl="@Context.Request.Path">@i.Name</a>
                         </h5>
                         <p class="card-text">
                             @i.Price$<br />
