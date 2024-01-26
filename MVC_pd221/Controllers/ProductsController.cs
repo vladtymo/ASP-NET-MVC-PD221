@@ -33,6 +33,21 @@ namespace MVC_pd221.Controllers
             return View(products);
         }
 
+        public IActionResult Details(int id)
+        {
+            // with JOIN operators
+            //var product = context.Products.Include(x => x.Category).FirstOrDefault(i => i.Id == id);
+            // without JOIN operators
+            var product = context.Products.Find(id);
+
+            if (product == null) return NotFound();
+
+            // load product related entity
+            context.Entry(product).Reference(x => x.Category).Load();
+
+            return View(product);
+        }
+
         public IActionResult Create()
         {
             LoadCategories();

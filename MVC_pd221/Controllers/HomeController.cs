@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MVC_pd221.Data;
 using MVC_pd221.Models;
 using System.Diagnostics;
@@ -21,7 +22,10 @@ namespace MVC_pd221.Controllers
         public IActionResult Index()
         {
             ViewBag.ProductsCount = context.Products.Count();
-            return View();
+
+            var products = context.Products.Include(x => x.Category).ToList();
+
+            return View(products);
         }
 
         public IActionResult Privacy()
