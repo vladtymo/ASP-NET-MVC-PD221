@@ -9,23 +9,7 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
         @foreach (var i in Model)
         {
-            <div class="col">
-                <div class="card h-100">
-                    <img src="@i.ImageUrl" class="card-img-top" alt="Image Url">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a class="title-link" asp-controller="Products" asp-action="Details" asp-route-id="@i.Id" asp-route-returnUrl="@Context.Request.Path">@i.Name</a>
-                        </h5>
-                        <p class="card-text">
-                            @i.Price$<br />
-                            @i.Category?.Name
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-primary">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
+           <partial name="_ProductCardPartial" model="@i" />
         }
     </div>
 </div>
