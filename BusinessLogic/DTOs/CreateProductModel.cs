@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace MVC_pd221.Data.Entities
+﻿namespace BusinessLogic.Models
 {
-    public class Product
+    public class CreateProductModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int Discount { get; set; }
@@ -12,6 +9,5 @@ namespace MVC_pd221.Data.Entities
         public bool InStock { get; set; }
         public string? Description { get; set; }
         public int CategoryId { get; set; }
-        public Category? Category { get; set; }
     }
 }

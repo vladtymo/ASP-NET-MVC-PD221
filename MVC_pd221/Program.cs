@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using MVC_pd221.Data;
 using FluentValidation;
 using System.Reflection;
 using FluentValidation.AspNetCore;
+using DataAccess.Data;
 
 namespace MVC_pd221
 {

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using MVC_pd221.Data.Entities;
-using MVC_pd221.Models;
+using BusinessLogic.Models;
+using DataAccess.Data.Entities;
 
-namespace MVC_pd221.Mapping
+namespace BusinessLogic.Mapping
 {
     public class ProductProfile : Profile
     {

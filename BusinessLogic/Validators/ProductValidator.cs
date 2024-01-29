@@ -1,11 +1,11 @@
-﻿using FluentValidation;
-using MVC_pd221.Models;
+﻿using DataAccess.Data.Entities;
+using FluentValidation;
 
 namespace MVC_pd221.Validators
 {
-    public class CreateProductValidator : AbstractValidator<CreateProductModel>
+    public class ProductValidator : AbstractValidator<Product>
     {
-        public CreateProductValidator()
+        public ProductValidator()
         {
             RuleFor(x => x.Price)
                 .NotEmpty()

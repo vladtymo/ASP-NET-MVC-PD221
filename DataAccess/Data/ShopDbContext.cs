@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MVC_pd221.Data.Entities;
+using DataAccess.Data.Entities;
 
-namespace MVC_pd221.Data
+namespace DataAccess.Data
 {
     public class ShopDbContext : DbContext
     {

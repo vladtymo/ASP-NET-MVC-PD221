@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
-namespace MVC_pd221.Data
+namespace DataAccess.Data
 {
     public class SampleContextFactory : IDesignTimeDbContextFactory<ShopDbContext>
     {

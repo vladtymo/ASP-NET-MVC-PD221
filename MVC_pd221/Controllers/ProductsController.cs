@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
+using BusinessLogic.Models;
+using DataAccess.Data;
+using DataAccess.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MVC_pd221.Data;
-using MVC_pd221.Data.Entities;
-using MVC_pd221.Models;
 
 namespace MVC_pd221.Controllers
 {

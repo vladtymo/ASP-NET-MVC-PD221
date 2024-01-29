@@ -1,4 +1,4 @@
-﻿namespace MVC_pd221.Data.Entities
+﻿namespace DataAccess.Data.Entities
 {
     public class Category
     {

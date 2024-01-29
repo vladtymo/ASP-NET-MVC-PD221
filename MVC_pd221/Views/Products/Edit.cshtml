@@ -20,7 +20,7 @@
     </div>
     <div class="col-4">
         <label asp-for=Discount class="form-label">Discount</label>
-        <input asp-for=Discount type="number" value="0" min="0" class="form-control" placeholder="Enter product discount">
+        <input asp-for=Discount type="number" min="0" class="form-control" placeholder="Enter product discount">
         <span asp-validation-for=Discount class="form-text text-danger"></span>
     </div>
     <div class="col-md-12">
@@ -36,7 +36,7 @@
 
     <div class="col-12">
         <div class="form-check">
-            <input asp-for=InStock checked class="form-check-input" type="checkbox">
+            <input asp-for=InStock class="form-check-input" type="checkbox">
             <label asp-for=InStock class="form-check-label">
                 In Stock
             </label>
