@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BusinessLogic.DTOs;
 using BusinessLogic.Models;
 using DataAccess.Data;
 using DataAccess.Data.Entities;
@@ -23,12 +24,13 @@ namespace MVC_pd221.Controllers
         {
             // TempData[key] = value; - not-typing obejcts
             // ViewBag.Key = value;   - typed elements
-            ViewBag.Categories = new SelectList(context.Categories.ToList(), nameof(Category.Id), nameof(Category.Name));
+            var categoris = mapper.Map<List<CategoryDto>>(context.Categories.ToList());
+            ViewBag.Categories = new SelectList(categoris, nameof(CategoryDto.Id), nameof(CategoryDto.Name));
         }
 
         public IActionResult Index()
         {
-            var products = context.Products.Include(x => x.Category).ToList();
+            var products = mapper.Map<List<ProductDto>>(context.Products.Include(x => x.Category).ToList());
 
             return View(products);
         }
@@ -47,7 +49,7 @@ namespace MVC_pd221.Controllers
 
             ViewBag.ReturnUrl = returnUrl;
 
-            return View(product);
+            return View(mapper.Map<ProductDto>(product));
         }
 
         public IActionResult Create()
@@ -94,11 +96,11 @@ namespace MVC_pd221.Controllers
             if (product == null) return NotFound();
 
             LoadCategories();
-            return View(product);
+            return View(mapper.Map<ProductDto>(product));
         }
 
         [HttpPost]
-        public IActionResult Edit(Product model)
+        public IActionResult Edit(EditProductModel model)
         {
             // model validation
             if (!ModelState.IsValid)
@@ -107,8 +109,10 @@ namespace MVC_pd221.Controllers
                 return View(model);
             }
 
+            var entity = mapper.Map<Product>(model);
+
             // update product in the db
-            context.Products.Update(model);
+            context.Products.Update(entity);
             context.SaveChanges();
 
             return RedirectToAction("Index");

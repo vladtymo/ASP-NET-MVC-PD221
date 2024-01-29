@@ -1,4 +1,4 @@
-﻿@model List<Product>;
+﻿@model List<ProductDto>;
 
 <h1>Products List</h1>
 <p>You can manage the available products here.</p>
@@ -31,7 +31,7 @@
                     }
                 </td>
                 <td>@i.Price$</td>
-                <td>@i.Category?.Name</td>
+                <td>@(i.CategoryName ?? "not loaded")</td>
                 <td>@i.Discount%</td>
                 <td>
                     @if(i.InStock)

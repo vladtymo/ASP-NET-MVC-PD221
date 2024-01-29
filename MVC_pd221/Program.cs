@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using FluentValidation;
 using System.Reflection;
 using FluentValidation.AspNetCore;
 using DataAccess.Data;
+using BusinessLogic.Mapping;
+using BusinessLogic;
 
 namespace MVC_pd221
 {
@@ -22,13 +23,9 @@ namespace MVC_pd221
                 opts.UseSqlServer(connStr));
 
             // auto mapper
-            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            builder.Services.AddAutoMapper();
 
-            builder.Services.AddFluentValidationAutoValidation();
-            // enable client-side validation
-            builder.Services.AddFluentValidationClientsideAdapters();
-            // Load an assembly reference rather than using a marker type.
-            builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+            builder.Services.AddFluentValidator();
 
             var app = builder.Build();
 
