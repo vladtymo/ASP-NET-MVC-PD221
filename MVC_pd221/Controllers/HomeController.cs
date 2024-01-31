@@ -1,3 +1,4 @@
+using BusinessLogic.Interfaces;
 using DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,23 +10,21 @@ namespace MVC_pd221.Controllers
     public class HomeController : Controller
     {
         private List<Contact> contacts = new();
-        private readonly ShopDbContext context;
+        private readonly IProductsService productsService;
 
-        public HomeController(ShopDbContext context)
+        public HomeController(IProductsService productsService)
         {
             contacts.Add(new Contact() { Id = 1000, Name = "Bob", Phone = "+380987654321" });
             contacts.Add(new Contact() { Id = 1003, Name = "Olga", Phone = "45-66-33" });
             contacts.Add(new Contact() { Id = 1006, Name = "Alex", Phone = "0674455332" });
-            this.context = context;
+
+            this.productsService = productsService;
         }
 
         public IActionResult Index()
         {
-            ViewBag.ProductsCount = context.Products.Count();
-
-            var products = context.Products.Include(x => x.Category).ToList();
-
-            return View(products);
+            ViewBag.ProductsCount = productsService.GetCount();
+            return View(productsService.GetAll());
         }
 
         public IActionResult Privacy()

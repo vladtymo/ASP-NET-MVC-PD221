@@ -5,6 +5,7 @@ using DataAccess.Data;
 using BusinessLogic.Mapping;
 using BusinessLogic;
 using DataAccess;
+using BusinessLogic.Services;
 
 namespace MVC_pd221
 {
@@ -26,6 +27,9 @@ namespace MVC_pd221
             builder.Services.AddAutoMapper();
             // fluent validators configuration
             builder.Services.AddFluentValidator();
+
+            // add custom servies
+            builder.Services.AddCustomServices();
 
             var app = builder.Build();
 

@@ -1,4 +1,6 @@
-﻿using FluentValidation;
+﻿using BusinessLogic.Interfaces;
+using BusinessLogic.Services;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +12,7 @@ namespace BusinessLogic
         {
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
+
         public static void AddFluentValidator(this IServiceCollection services)
         {
             services.AddFluentValidationAutoValidation();
@@ -18,6 +21,11 @@ namespace BusinessLogic
             // Load an assembly reference rather than using a marker type.
             services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
         }
-        
+
+        public static void AddCustomServices(this IServiceCollection services)
+        {
+            services.AddScoped<IProductsService, ProductsService>();
+            // others...
+        }
     }
 }
