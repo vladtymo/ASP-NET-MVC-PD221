@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Services
 {
-
     internal class ProductsService : IProductsService
     {
         private readonly IMapper mapper;
