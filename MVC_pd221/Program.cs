@@ -4,6 +4,7 @@ using FluentValidation.AspNetCore;
 using DataAccess.Data;
 using BusinessLogic.Mapping;
 using BusinessLogic;
+using DataAccess;
 
 namespace MVC_pd221
 {
@@ -13,18 +14,17 @@ namespace MVC_pd221
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            var connStr = builder.Configuration.GetConnectionString("LocalDb");
+            string connStr = builder.Configuration.GetConnectionString("LocalDb")!;
 
             // Add services to the container.
             // DI - Dependency Injection. It implements SOLI[D] principle Dependency Inversion
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddDbContext<ShopDbContext>(opts => 
-                opts.UseSqlServer(connStr));
+            builder.Services.AddDbContext(connStr);
 
-            // auto mapper
+            // auto mapper configuration
             builder.Services.AddAutoMapper();
-
+            // fluent validators configuration
             builder.Services.AddFluentValidator();
 
             var app = builder.Build();
