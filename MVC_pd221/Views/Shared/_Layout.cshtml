@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using BusinessLogic.Interfaces
+@inject ICartService cartService;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -26,12 +29,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        @* <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Contacts">Contacts</a>
-                        </li> *@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Products" asp-action="Index">Products</a>
                         </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <a class="nav-link text-dark" asp-controller="Cart" asp-action="Index">
+                            <i class="bi bi-cart3"></i> (@cartService.GetCount())
+                        </a>
                     </ul>
                 </div>
             </div>

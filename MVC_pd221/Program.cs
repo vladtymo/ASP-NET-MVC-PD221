@@ -6,6 +6,7 @@ using BusinessLogic.Mapping;
 using BusinessLogic;
 using DataAccess;
 using BusinessLogic.Services;
+using MVC_pd221.Helpers;
 
 namespace MVC_pd221
 {
@@ -30,6 +31,16 @@ namespace MVC_pd221
 
             // add custom servies
             builder.Services.AddCustomServices();
+            builder.Services.AddCartService();
+
+            builder.Services.AddDistributedMemoryCache();
+
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromDays(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
             var app = builder.Build();
 
@@ -47,6 +58,8 @@ namespace MVC_pd221
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.MapControllerRoute(
                 name: "default",

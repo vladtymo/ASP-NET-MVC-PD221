@@ -16,7 +16,7 @@
         <h5 class="card-title fs-1">@Model.Name</h5>
         <p class="card-text fs-4">@Model.Price$ - @(Model.CategoryName ?? "category not loaded")</p>
         <div>
-            <a href="#" class="btn btn-primary my-3">Add to Cart</a>
+            <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary my-3">Add to Cart</a>
             <a href="#" class="btn btn-success my-3">Buy Now</a>
         </div>
         <div>
