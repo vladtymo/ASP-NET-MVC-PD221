@@ -1,6 +1,9 @@
 ﻿using DataAccess.Data;
+using DataAccess.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
 
 namespace DataAccess
 {
@@ -12,5 +15,6 @@ namespace DataAccess
                 opts.UseSqlServer(connectionString));
         }
 
+        
     }
 }

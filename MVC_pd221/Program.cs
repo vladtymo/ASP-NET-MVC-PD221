@@ -7,6 +7,10 @@ using BusinessLogic;
 using DataAccess;
 using BusinessLogic.Services;
 using MVC_pd221.Helpers;
+using Microsoft.AspNetCore.Identity;
+using DataAccess.Data.Entities;
+using BusinessLogic.Interfaces;
+using MVC_pd221.Services;
 
 namespace MVC_pd221
 {
@@ -24,6 +28,14 @@ namespace MVC_pd221
 
             builder.Services.AddDbContext(connStr);
 
+            builder.Services.AddIdentity<User, IdentityRole>(options =>
+                {
+                    options.SignIn.RequireConfirmedAccount = false;
+                })
+                .AddDefaultTokenProviders()
+                .AddDefaultUI()
+                .AddEntityFrameworkStores<ShopDbContext>();
+
             // auto mapper configuration
             builder.Services.AddAutoMapper();
             // fluent validators configuration
@@ -32,6 +44,7 @@ namespace MVC_pd221
             // add custom servies
             builder.Services.AddCustomServices();
             builder.Services.AddCartService();
+            //builder.Services.AddScoped<ICartService, CartService>();
 
             builder.Services.AddDistributedMemoryCache();
 
@@ -61,6 +74,7 @@ namespace MVC_pd221
 
             app.UseSession();
 
+            app.MapRazorPages();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

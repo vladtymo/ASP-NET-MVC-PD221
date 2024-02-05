@@ -2,6 +2,7 @@
 using BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Http;
 using MVC_pd221.Helpers;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Text.Json;
 
@@ -19,8 +20,17 @@ namespace MVC_pd221.Services
             this.productsService = productsService;
         }
 
-        private void SaveItems(List<int> items) => httpContext.Session.Set(key, items);
-        private List<int>? GetItems() => httpContext.Session.Get<List<int>>(key);
+        private void SaveItems(List<int> items)
+        {
+            //httpContext.Session.SetString(key, JsonSerializer.Serialize(items));
+            httpContext.Session.Set(key, items);
+        }
+        private List<int>? GetItems()
+        {
+            //var value = httpContext.Session.GetString(key);
+            // return value == null ? default : JsonSerializer.Deserialize<List<int>>(value);
+            return httpContext.Session.Get<List<int>>(key);
+        }
 
         public int GetCount()
         {
