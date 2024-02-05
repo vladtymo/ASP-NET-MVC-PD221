@@ -1,4 +1,6 @@
-﻿@model ProductDto;
+﻿@using BusinessLogic.Interfaces
+@model ProductDto;
+@inject ICartService cartService;
 
 <div class="col">
     <div class="card h-100">
@@ -24,7 +26,15 @@
             </p>
         </div>
         <div class="card-footer">
-            <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary">Add to Cart</a>
+            @* TODO: optimize checking is product exist in cart *@
+            @if (cartService.IsExists(Model.Id))
+            {
+                <a asp-controller="Cart" asp-action="Remove" asp-route-id="@Model.Id" class="btn btn-secondary">Remove from Cart</a>
+            }
+            else
+            {
+                <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary">Add to Cart</a>
+            }
         </div>
     </div>
 </div>

@@ -2,6 +2,7 @@
 using BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Http;
 using MVC_pd221.Helpers;
+using System.Collections.Generic;
 using System.Text.Json;
 
 namespace MVC_pd221.Services
@@ -54,6 +55,15 @@ namespace MVC_pd221.Services
 
             // save items to the cart
             SaveItems(ids);
+        }
+
+        public bool IsExists(int id)
+        {
+            IEnumerable<int>? ids = GetItems();
+
+            if (ids == null) return false;
+
+            return ids.Contains(id);
         }
     }
 }
