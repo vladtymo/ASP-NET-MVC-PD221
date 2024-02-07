@@ -20,11 +20,11 @@
         <div>
             @if (cartService.IsExists(Model.Id))
             {
-                <a asp-controller="Cart" asp-action="Remove" asp-route-id="@Model.Id" class="btn btn-secondary my-3">Remove from Cart</a>
+                <a asp-controller="Cart" asp-action="Remove" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-secondary my-3">Remove from Cart</a>
             }
             else
             {
-                <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary my-3">Add to Cart</a>
+                <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-primary my-3">Add to Cart</a>
             }
             <a href="#" class="btn btn-success my-3">Buy Now</a>
         </div>

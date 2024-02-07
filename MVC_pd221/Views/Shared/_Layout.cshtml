@@ -1,5 +1,7 @@
 ﻿@using BusinessLogic.Interfaces
+@using Microsoft.AspNetCore.Identity
 @inject ICartService cartService;
+@inject SignInManager<User> SignInManager;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +34,10 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Products" asp-action="Index">Products</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Orders" asp-action="Index">Orders</a>
+                        </li>
+                        
                     </ul>
                     <ul class="navbar-nav">
                         <a class="nav-link text-dark" asp-controller="Cart" asp-action="Index">

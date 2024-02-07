@@ -29,11 +29,11 @@
             @* TODO: optimize checking is product exist in cart *@
             @if (cartService.IsExists(Model.Id))
             {
-                <a asp-controller="Cart" asp-action="Remove" asp-route-id="@Model.Id" class="btn btn-secondary">Remove from Cart</a>
+                <a asp-controller="Cart" asp-action="Remove" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-secondary">Remove from Cart</a>
             }
             else
             {
-                <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary">Add to Cart</a>
+                <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-primary">Add to Cart</a>
             }
         </div>
     </div>

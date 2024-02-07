@@ -17,7 +17,7 @@ namespace BusinessLogic.Mapping
             CreateMap<EditProductModel, Product>().ReverseMap();
           
             CreateMap<Category, CategoryDto>().ReverseMap();
-
+            CreateMap<Order, OrderDto>().ReverseMap();
         }
     }
 }

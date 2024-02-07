@@ -13,5 +13,7 @@ namespace DataAccess.Data.Entities
         public string? Description { get; set; }
         public int CategoryId { get; set; }
         public Category? Category { get; set; }
+
+        public ICollection<Order> Orders { get; set; }
     }
 }

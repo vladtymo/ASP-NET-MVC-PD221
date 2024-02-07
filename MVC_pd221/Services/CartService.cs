@@ -75,5 +75,10 @@ namespace MVC_pd221.Services
 
             return ids.Contains(id);
         }
+
+        public IEnumerable<int> GetProductIds()
+        {
+            return GetItems() ?? Enumerable.Empty<int>();
+        }
     }
 }
