@@ -24,6 +24,7 @@ namespace MVC_pd221.Controllers
         public IActionResult Create()
         {
             ordersService.Create(UserId);
+            TempData["ToastMessage"] = "Your order confirmed successfullt!";
             return RedirectToAction(nameof(Index));
         }
     }

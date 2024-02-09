@@ -32,6 +32,8 @@ namespace MVC_pd221.Controllers
 
         public IActionResult Remove(int id, string returnUrl)
         {
+            TempData["ToastMessage"] = "Product was removed from your cart!";
+
             cartService.Remove(id);
             return Redirect(returnUrl);
         }
