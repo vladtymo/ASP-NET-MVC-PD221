@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.Models;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 
 namespace BusinessLogic.Validators
 {
@@ -25,9 +26,8 @@ namespace BusinessLogic.Validators
             RuleFor(x => x.CategoryId)
                 .NotEmpty();
 
-            RuleFor(x => x.ImageUrl)
-                .NotEmpty()
-                .Must(LinkMustBeAUri).WithMessage("{PropertyName} must be a valid URL address.");
+            RuleFor(x => x.Image)
+                .NotNull().WithMessage("{PropertyName} is required.");
         }
 
         private static bool LinkMustBeAUri(string link)
