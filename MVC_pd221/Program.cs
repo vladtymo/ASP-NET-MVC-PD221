@@ -57,6 +57,16 @@ namespace MVC_pd221
 
             var app = builder.Build();
 
+            // seed roles and admin
+            // app.Services.SeedAdmin();
+            using (var scope = app.Services.CreateScope())
+            {
+                var serviceProvider = scope.ServiceProvider;
+
+                serviceProvider.SeedRoles().Wait();
+                serviceProvider.SeedAdmin().Wait();
+            }
+
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
@@ -70,7 +80,8 @@ namespace MVC_pd221
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication(); // check user account
+            app.UseAuthorization();  // give access base on roles
 
             app.UseSession();
 

@@ -1,15 +1,48 @@
 ﻿@model List<ProductDto>;
-
+@{
+    string? showMsg = TempData["ToastMessage"] as string;
+}
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 
     <p>Products in the Shop: @ViewBag.ProductsCount</p>
 
+    <p>@ViewBag.ToastMessage</p>
+
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
         @foreach (var i in Model)
         {
-           <partial name="_ProductCardPartial" model="@i" />
+            <partial name="_ProductCardPartial" model="@i" />
         }
     </div>
 </div>
+
+@* <div id="addToCartToast" class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+        <div class="toast-body">
+            Product was added to your cart!
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+</div> *@
+<div class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 11">
+    <div data-bs-delay="2000" id="addToCartToast" class="toast text-white bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body text-center">
+            Product was added to your cart!
+        </div>
+    </div>
+</div>
+
+@if (showMsg != null)
+{
+    @section Scripts {
+        <script>
+            console.log("Hello");
+
+            var addToast = document.getElementById('addToCartToast');
+            var toast = new bootstrap.Toast(addToast);
+            toast.show();
+        </script>
+    }
+}

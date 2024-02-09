@@ -4,12 +4,15 @@ using BusinessLogic.Interfaces;
 using BusinessLogic.Models;
 using DataAccess.Data;
 using DataAccess.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using MVC_pd221.Helpers;
 
 namespace MVC_pd221.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
         private readonly IMapper mapper;
@@ -29,11 +32,13 @@ namespace MVC_pd221.Controllers
             ViewBag.Categories = new SelectList(categoris, nameof(CategoryDto.Id), nameof(CategoryDto.Name));
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View(productsService.GetAll());
         }
 
+        [AllowAnonymous]
         public IActionResult Details(int id, string? returnUrl)
         {
             var product = productsService.Get(id);

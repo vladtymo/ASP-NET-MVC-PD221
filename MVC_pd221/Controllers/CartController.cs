@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
@@ -22,6 +23,10 @@ namespace MVC_pd221.Controllers
         public IActionResult Add(int id, string returnUrl)
         {
             cartService.Add(id);
+
+            //ViewBag.ToastMessage = "Product was added to your cart!";
+            TempData["ToastMessage"] = "Product was added to your cart!";
+
             return Redirect(returnUrl);
         }
 
