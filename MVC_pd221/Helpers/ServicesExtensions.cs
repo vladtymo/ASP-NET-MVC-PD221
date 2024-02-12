@@ -8,6 +8,7 @@ namespace MVC_pd221.Helpers
         public static void AddCartService(this IServiceCollection services)
         {
             services.AddScoped<ICartService, CartService>();
+            services.AddScoped<IViewRender, ViewRender>();
         }
     }
 }
