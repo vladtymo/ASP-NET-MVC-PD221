@@ -76,7 +76,7 @@ namespace MVC_pd221.Controllers
             if (product == null) return NotFound();
 
             LoadCategories();
-            return View(product);
+            return View(mapper.Map<EditProductModel>(product));
         }
 
         [HttpPost]

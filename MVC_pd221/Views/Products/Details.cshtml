@@ -31,6 +31,6 @@
         <div>
             <img src="@Model.ImageUrl" alt="Product Image" />
         </div>
-        <p class="card-text">@Model.Description</p>
+        <p class="card-text">@Html.Raw(Model.Description)</p>
     </div>
 </div>

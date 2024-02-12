@@ -18,7 +18,8 @@ namespace BusinessLogic.Mapping
                 .ForMember(x => x.ImageUrl, opts => opts.MapFrom(p => fileService.SaveProductImage(p.Image).Result));
 
             CreateMap<EditProductModel, Product>().ReverseMap();
-          
+            CreateMap<EditProductModel, ProductDto>().ReverseMap();
+
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<Order, OrderDto>().ReverseMap();
         }
